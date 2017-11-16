@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+   <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+         <div class="panel panel-success">
+            <div class="panel-heading text-center">Profesori</div>
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th>Id</th>
+                     <th>Ime</th>
+                     <th>Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for profesor in profesori %}
+                  <tr>
+                     <td>{{ profesor.id }}</a></td>
+                     <td>{{ profesor.name }}</td>
+                     <td>
+                        <ul class="list-inline">
+                           <li class="list-inline-item">                              
+                              <a href="{{ path('editProf', { 'id': profesor.id }) }}">Uredi</a>
+                           </li>
+                           <li class="list-inline-item">                              
+                              <button type="button" class="btn btn-danger"><a href="{{ path('deleteProf', { 'id': profesor.id }) }}">Delete</a></button>
+                           </li>                                                     
+                        </ul>
+                     </td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+    
+{% endblock %}

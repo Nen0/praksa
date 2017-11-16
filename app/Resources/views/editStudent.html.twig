@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+<div class="col-md-6 col-md-offset-4">
+    <div class="row">
+        <h1>Uredi studenta</h1>
+
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit" />
+    {{ form_end(edit_form) }}   
+    </div>
+</div></div>
+    
+{% endblock %}
