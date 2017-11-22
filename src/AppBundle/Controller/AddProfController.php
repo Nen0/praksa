@@ -31,8 +31,7 @@ class AddProfController extends Controller
            
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);
-            $em->flush();
-            //$request->getSession()->getFlashBag()->add('success', 'Welcome to the Death Star, have a magical day!');
+            $em->flush();            
 
             return $this->redirectToRoute('login');
         }
