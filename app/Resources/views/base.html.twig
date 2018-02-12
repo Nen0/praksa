@@ -61,11 +61,12 @@
                     <!-- Authentication Links -->
                     {% if is_granted("ROLE_ADMIN")%}
                     <li><a href="/admin/add">Dodaj profesora</a></li>
+                    <li><a href="/admin/popisbanaka">Banke</a></li>
                     <li><a href="/admin/ListProf">Lista profesora</a></li>
                     <li><a href="/profesor/addstudent">Dodaj studenta</a></li>
                     <li><a href="/profesor/ListStudent">Lista studenata</a></li>
 
-                    <li>{{app.user.name}}</li>
+                    <li style="margin-top: 15px;">{{app.user.name}}</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                               {{ app.session.get('user') }} <span class="caret"></span>
@@ -80,7 +81,7 @@
                     {% elseif is_granted("ROLE_PROF")%}
                     <li><a href="/profesor/addstudent">Dodaj studenta</a></li>
                     <li><a href="/profesor/ListStudent">Lista studenata</a></li>
-                    <li>{{app.user.name}}</li>
+                    <li style="margin-top: 15px;">{{app.user.name}}</li>s
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                               {{ app.session.get('user') }} <span class="caret"></span>
@@ -92,7 +93,7 @@
                         </ul>
                     </li>
                     {% elseif is_granted("ROLE_STUDENT")%}
-                    <li>{{app.user.name}}</li>
+                     <li style="margin-top: 15px;">{{app.user.name}}</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                               {{ app.session.get('user') }} <span class="caret"></span>

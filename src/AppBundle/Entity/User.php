@@ -37,6 +37,10 @@ class User implements UserInterface
      * @Assert\Length(max=4096)
      */
     protected $plainPassword;
+    /**
+     * @Assert\Length(max=4096)
+     */
+    protected $smijer;
 
     /**
      * @ORM\Column(type="string", length=64)
@@ -110,6 +114,15 @@ class User implements UserInterface
     public function setPlainPassword($plainPassword)
     {
         $this->plainPassword = $plainPassword;
+    }
+    public function getSmijer()
+    {
+        return $this->smijer;
+    }
+
+    public function setSmijer($smijer)
+    {
+        $this->smijer = $smijer;
     }
 
     public function getSalt()

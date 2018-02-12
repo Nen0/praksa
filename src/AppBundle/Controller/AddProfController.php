@@ -2,7 +2,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
-use AppBundle\Form\UserType;
+use AppBundle\Form\ProfType;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,7 +16,8 @@ class AddProfController extends Controller
     {
        
         $user = new User();
-        $form = $this->createForm(UserType::class, $user);
+
+        $form = $this->createForm(ProfType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -27,16 +28,19 @@ class AddProfController extends Controller
 
             
             $user->setRole('ROLE_PROF');
+            dump($user);
 
            
-            $em = $this->getDoctrine()->getManager();
+            /*$em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();            
 
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('login');*/
         }
 
-        return $this->render('auth/register.html.twig', [
+
+
+        return $this->render('auth/addProf.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -60,7 +64,7 @@ class AddProfController extends Controller
     public function editAction(Request $request, User $user)
     {
         
-        $editForm = $this->createForm(UserType::class, $user);
+        $editForm = $this->createForm(ProfType::class, $user);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
@@ -89,6 +93,16 @@ class AddProfController extends Controller
             }
 
         return $this->redirectToRoute('listProf');
+    }
+    /**
+     * @Route("/aaaa", name="aaa")
+    */
+    public function aaaAction()
+    {
+        
+        return $this->render('auth/aaa.html.twig');
+
+        
     }
 
 }
