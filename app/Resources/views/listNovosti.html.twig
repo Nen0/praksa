@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %} {% block body %}
+<div class="container">
+    <div class="row">
+        {% for novost in novosti %}
+        
+        <div class="jumbotron">
+            <h3>{{ novost.name }}</h3>
+            <p>{{ novost.sadrzaj }}</p>
+        </div>
+        <br/> 
+    {% endfor %}
+    </div>
+</div>
+{% endblock %}

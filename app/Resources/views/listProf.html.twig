@@ -10,23 +10,25 @@
             <table class="table">
                <thead>
                   <tr>
-                     <th>Id</th>
+                     <th class="hidden">Id</th>
                      <th>Ime</th>
+                     <th>Smijer</th>
                      <th>Actions</th>
                   </tr>
                </thead>
                <tbody>
                   {% for profesor in profesori %}
                   <tr>
-                     <td>{{ profesor.id }}</a></td>
+                     <td class="hidden">{{ profesor.id }}</a></td>
                      <td>{{ profesor.name }}</td>
+                     <td>{{ profesor.smijer.name }}</td>
                      <td>
                         <ul class="list-inline">
                            <li class="list-inline-item">                              
                               <a href="{{ path('editProf', { 'id': profesor.id }) }}">Uredi</a>
                            </li>
                            <li class="list-inline-item">                              
-                              <a href="{{ path('deleteProf', { 'id': profesor.id }) }}">Delete</a>
+                              <a href="{{ path('deleteProf', { 'id': profesor.id }) }}">Briši</a>
                            </li>                                                     
                         </ul>
                      </td>

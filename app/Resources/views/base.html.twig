@@ -60,13 +60,11 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     {% if is_granted("ROLE_ADMIN")%}
-                    <li><a href="/admin/add">Dodaj profesora</a></li>
-                    <li><a href="/admin/popisbanaka">Banke</a></li>
+                    <li><a href="/admin/add">Dodaj profesora</a></li>                    
                     <li><a href="/admin/ListProf">Lista profesora</a></li>
                     <li><a href="/profesor/addstudent">Dodaj studenta</a></li>
                     <li><a href="/profesor/ListStudent">Lista studenata</a></li>
-
-                    <li style="margin-top: 15px;">{{app.user.name}}</li>
+                    <li style="margin-top: 15px;">{{app.user.email}}</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                               {{ app.session.get('user') }} <span class="caret"></span>
@@ -81,7 +79,9 @@
                     {% elseif is_granted("ROLE_PROF")%}
                     <li><a href="/profesor/addstudent">Dodaj studenta</a></li>
                     <li><a href="/profesor/ListStudent">Lista studenata</a></li>
-                    <li style="margin-top: 15px;">{{app.user.name}}</li>s
+                    <li><a href="/profesor/dodajNovost">Dodaj novost</a></li>
+                    <li><a href="/student/novosti">Novosti</a></li>
+                    <li style="margin-top: 15px;">{{app.user.email}}</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                               {{ app.session.get('user') }} <span class="caret"></span>
@@ -93,14 +93,16 @@
                         </ul>
                     </li>
                     {% elseif is_granted("ROLE_STUDENT")%}
-                     <li style="margin-top: 15px;">{{app.user.name}}</li>
-                    <li class="dropdown">
+
+                     <li><a href="/student/novosti">Novosti</a></li>                    
+                     <li><a href="/student/profil">Moj profil</a></li>                     
+                    <li style="margin-top: 15px;">{{app.user.email}}</li>                    
+                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                               {{ app.session.get('user') }} <span class="caret"></span>
                           </a>
 
                         <ul class="dropdown-menu" role="menu">
-
                             <li><a href="/logout"><i class="fa fa-btn fa-sign-out"></i>Logout</a></li>
                         </ul>
                     </li>
@@ -111,19 +113,16 @@
             </div>
         </div>
     </nav>
+    {% if app.session.flashBag.has('success') %}
+        <div class="alert alert-success">
+            {% for msg in app.session.flashBag.get('success') %}
+                {{ msg }}
+            {% endfor %}
+        </div>
+    {% endif %}
 
     {% block body %}{% endblock %}
-    <div class="footer">
-        <hr>
-        <div class="col-lg-12">
-            <div class="col-md-8">
-                <a href="/contact">Kontakt</a>
-            </div>
-            <div class="col-md-4">
-                <p class="muted pull-right">© Diplomski rad Kristina Babić</p>
-            </div>
-        </div>
-    </div>
+    
     <!-- JavaScripts -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.3/jquery.min.js" integrity="sha384-I6F5OKECLVtK/BL+8iSLDEHowSAfUo76ZL9+kGAgTRdiByINKJaqTPH/QVNS1VDb" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>

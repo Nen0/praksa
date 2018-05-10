@@ -1,0 +1,41 @@
+ {% extends 'base.html.twig' %} {% block body %}
+<div class="container">
+    
+    <div class="jumbotron">
+        <h2 class="display-3 text-center">{{user.name}}</h2>
+        
+    </div>
+    <div class="row marketing">
+        <div class="col-lg-4">
+            
+            <h4>Adresa:</h4>
+            <p>{{user.address}}</p>
+            <h4>Poštanski broj:</h4>
+            <p>{{user.zip}}</p>
+            <h4>Grad:</h4>
+            <p>{{user.grad}}</p>
+            
+        </div>
+        <div class="col-lg-4">
+            <h4>Email:</h4>
+            <p></p>
+            <a href="mailto:{{user.email}}" target="_top">{{user.email}}</a>
+            <h4>Obrazovanje:</h4>
+            <p>{{user.obrazovanje}}</p>
+            <h4>Iskustvo:</h4>
+            <p>{{user.iskustvo}}</p>           
+            
+        </div>
+        <div class="col-lg-4">
+            <h4>Vještine:</h4>
+            <p>{{user.vjestine}}</p>
+            <h4>Jezici:</h4>
+            <p>{{user.jezici}}</p>
+            <h4>ostalo:</h4>
+            <p>{{user.ostalo}}</p>
+            
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

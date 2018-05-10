@@ -28,7 +28,6 @@ class Studij
      */
     private $name;
 
-
     /**
      * Get id
      *
@@ -39,13 +38,6 @@ class Studij
         return $this->id;
     }
 
-    /**
-     * Set name
-     *
-     * @param string $name
-     *
-     * @return Studij
-     */
     public function setName($name)
     {
         $this->name = $name;

@@ -7,16 +7,18 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class AddProfController extends Controller
+class ProfController extends Controller
 {
     /**
      * @Route("/admin/add", name="addProf")
      */
-    public function registerAction(Request $request)
+    public function dodajProfesora(Request $request)
     {
        
         $user = new User();
 
+
+        $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(ProfType::class, $user);
         $form->handleRequest($request);
 
@@ -28,14 +30,13 @@ class AddProfController extends Controller
 
             
             $user->setRole('ROLE_PROF');
-            dump($user);
+            
 
            
-            /*$em = $this->getDoctrine()->getManager();
             $em->persist($user);
             $em->flush();            
 
-            return $this->redirectToRoute('login');*/
+            return $this->redirectToRoute('login');
         }
 
 
@@ -47,7 +48,7 @@ class AddProfController extends Controller
     /**
      * @Route("/admin/ListProf", name="listProf")
      */
-    public function indexAction()
+    public function listaProfesora()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -93,16 +94,6 @@ class AddProfController extends Controller
             }
 
         return $this->redirectToRoute('listProf');
-    }
-    /**
-     * @Route("/aaaa", name="aaa")
-    */
-    public function aaaAction()
-    {
-        
-        return $this->render('auth/aaa.html.twig');
-
-        
-    }
+    }   
 
 }

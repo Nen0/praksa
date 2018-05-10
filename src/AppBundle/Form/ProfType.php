@@ -9,40 +9,48 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+
+use AppBundle\Entity\Studij;
 
 class ProfType extends AbstractType
 {
+    
+
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
+        //$entityManager = $options['entity_manager'];
+
         $builder
             ->add('name', TextType::class)
-            ->add('email', EmailType::class)
+            ->add('email', EmailType::class)            
+            ->add('smijer', EntityType::class, array(                
+                'class' => Studij::class,    
+                'choice_label' => 'name',   
+            ))
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Confirm Password'],
-            ])
-            ->add('smijer', EntityType::class, array(
-            // query choices from this entity
-            'class' => 'AppBundle\Entity\Studij',
-
-            // use the User.username property as the visible option string
-            'choice_label' => 'name',
-            'choice_value' => 'id',
-
-
-            // used to render a select box, check boxes or radios
-            // 'multiple' => true,
-            // 'expanded' => true,
-    ));
+            ]);            
+            
     }
 
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'AppBundle\Entity\User',
-        ]);
+                    'data_class' => 'AppBundle\Entity\User',
+                ]);
+    }
+
+    private function getSmijer($em)
+    {
+        $studiji = $em->getRepository('AppBundle:Studij')->findAll();
+        $smijerovi = [];
+        foreach ($studiji as $studij) {
+            $smijerovi[$studij->getName()] = $studij->getName();
+        }
+        return $smijerovi;
     }
 }

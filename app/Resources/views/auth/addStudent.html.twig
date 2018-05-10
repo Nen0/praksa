@@ -7,12 +7,12 @@
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
         <div class="panel panel-default">
-          <div class="panel-heading">Register</div>
+          <div class="panel-heading">Kreiranje studenta</div>
           <div class="panel-body">
             {{ form_start(form) }}
             <div class="form_group">
                 <div class="col-md-8 col-md-offset-2">
-                  {{ form_row(form.name, {'attr': {'class': 'form-control'}}) }}
+                  {{ form_row(form.name, {'label' : 'Ime i prezime','attr': {'class': 'form-control'}}) }}
                 </div>
             </div>
 
@@ -24,20 +24,20 @@
 
             <div class="form_group">
                 <div class="col-md-8 col-md-offset-2">
-                {{ form_row(form.plainPassword.first, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.plainPassword.first, {'label' : 'Lozinka','attr': {'class': 'form-control'}}) }}
                 </div>
             </div>
 
             <div class="form_group">
                 <div class="col-md-8 col-md-offset-2">
-                {{ form_row(form.plainPassword.second, {'attr': {'class': 'form-control'}}) }}
+                {{ form_row(form.plainPassword.second, {'label' : 'Ponovite lozinku','attr': {'class': 'form-control'}}) }}
               </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-8 col-md-offset-4" style="margin-top:5px;">
                     <button type="submit" class="btn btn-primary">
-                        <i class="fa fa-btn fa-user"></i> Register
+                        <i class="fa fa-btn fa-user"></i> Kreiraj studenta
                     </button>
                 </div>
             </div>

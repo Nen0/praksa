@@ -1,4 +1,5 @@
 <?php
+
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
@@ -6,10 +7,14 @@ use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
+use AppBundle\Entity\Novost;
+
 /**
+ *
+ * @ORM\Table(name="user")
  * @ORM\Entity
- * @UniqueEntity(fields="email", message="This email address is already in use")
  */
+
 class User implements UserInterface
 {
     /**
@@ -28,6 +33,7 @@ class User implements UserInterface
      * @ORM\Column(type="string", length=40)
      */
     protected $name;    
+   
     /**
      * @ORM\Column(type="string", length=50)
      */
@@ -37,15 +43,52 @@ class User implements UserInterface
      * @Assert\Length(max=4096)
      */
     protected $plainPassword;
-    /**
-     * @Assert\Length(max=4096)
+
+     /**
+     * 
+     * @ORM\OneToOne(targetEntity="Studij")
+     * @ORM\JoinColumn(name="smijer", referencedColumnName="id")
      */
-    protected $smijer;
+    private $smijer;     
 
     /**
      * @ORM\Column(type="string", length=64)
      */
     protected $password;
+
+    /**
+     * @ORM\Column(type="string",nullable=true, length=40)
+     */
+    protected $address;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=40)
+     */
+    protected $zip;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=40)
+     */
+    protected $grad;
+    /**
+     * @ORM\Column(type="string", nullable=true, length=1024)
+     */
+    protected $iskustvo;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=1024)
+     */
+    protected $obrazovanje;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=1024)
+     */
+    protected $vjestine;
+    /**
+     * @ORM\Column(type="string",nullable=true, length=100)
+     */
+    protected $jezici;
+    /**
+     * @ORM\Column(type="string", nullable=true, length=1024)
+     */
+    protected $ostalo;
+
 
     public function eraseCredentials()
     {
@@ -124,9 +167,191 @@ class User implements UserInterface
     {
         $this->smijer = $smijer;
     }
+    public function getNovost()
+    {
+        return $this->novost;
+    }
+
+    public function setNovost($novost)
+    {
+        $this->novost = $novost;
+    }
 
     public function getSalt()
     {
         return null;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     *
+     * @return self
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+    
+    /**
+     * @param mixed $id
+     *
+     * @return self
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }   
+
+    /**
+     * @return mixed
+     */
+    public function getZip()
+    {
+        return $this->zip;
+    }
+
+    /**
+     * @param mixed $zip
+     *
+     * @return self
+     */
+    public function setZip($zip)
+    {
+        $this->zip = $zip;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getGrad()
+    {
+        return $this->grad;
+    }
+
+    /**
+     * @param mixed $grad
+     *
+     * @return self
+     */
+    public function setGrad($grad)
+    {
+        $this->grad = $grad;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIskustvo()
+    {
+        return $this->iskustvo;
+    }
+
+    /**
+     * @param mixed $iskustvo
+     *
+     * @return self
+     */
+    public function setIskustvo($iskustvo)
+    {
+        $this->iskustvo = $iskustvo;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getObrazovanje()
+    {
+        return $this->obrazovanje;
+    }
+
+    /**
+     * @param mixed $obrazovanje
+     *
+     * @return self
+     */
+    public function setObrazovanje($obrazovanje)
+    {
+        $this->obrazovanje = $obrazovanje;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getVjestine()
+    {
+        return $this->vjestine;
+    }
+
+    /**
+     * @param mixed $vjestine
+     *
+     * @return self
+     */
+    public function setVjestine($vjestine)
+    {
+        $this->vjestine = $vjestine;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getJezici()
+    {
+        return $this->jezici;
+    }
+
+    /**
+     * @param mixed $jezici
+     *
+     * @return self
+     */
+    public function setJezici($jezici)
+    {
+        $this->jezici = $jezici;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOstalo()
+    {
+        return $this->ostalo;
+    }
+
+    /**
+     * @param mixed $ostalo
+     *
+     * @return self
+     */
+    public function setOstalo($ostalo)
+    {
+        $this->ostalo = $ostalo;
+
+        return $this;
     }
 }

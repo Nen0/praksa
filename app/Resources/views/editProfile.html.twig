@@ -1,0 +1,72 @@
+
+{% extends 'base.html.twig' %}
+{% block body %}
+<div class="container">
+   <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+         <div class="panel panel-default">
+            <div class="panel-heading">Uredi Profil</div>
+            <div class="panel-body">
+               {{ form_start(edit_form) }}
+               <div class="form_group">
+                  <div class="col-md-8 col-md-offset-2">
+                     {{ form_row(edit_form.name, {label:'Ime i prezime','attr': {'class': 'form-control'}}) }}
+                  </div>
+                  <div class="form_group">
+                     <div class="col-md-8 col-md-offset-2">
+                        {{ form_row(edit_form.email, {label:'Email','attr': {'class': 'form-control'}}) }}
+                     </div>
+                  </div>
+                  <div class="col-md-8 col-md-offset-2">
+                     {{ form_row(edit_form.address, {label:'Adresa','attr': {'class': 'form-control'}}) }}
+                  </div>
+                  <div class="form_group">
+                     <div class="col-md-8 col-md-offset-2">
+                        {{ form_row(edit_form.zip, {label:'Poštanski broj','attr': {'class': 'form-control'}}) }}
+                     </div>
+                  </div> 
+                  <div class="col-md-8 col-md-offset-2">
+                     {{ form_row(edit_form.grad, {label:'Grad','attr': {'class': 'form-control'}}) }}
+                  </div>
+                  <div class="form_group">
+                     <div class="col-md-8 col-md-offset-2">
+                        {{ form_row(edit_form.jezici, {label:'Jezici','attr': {'class': 'form-control'}}) }}
+                     </div>
+                  </div> 
+                  <div class="form_group">
+                     <div class="col-md-8 col-md-offset-2">
+                        {{ form_row(edit_form.obrazovanje, {label:'Obrazovanje','attr': {'class': 'form-control'}}) }}
+                     </div>
+                  </div>
+                  <div class="form_group">
+                     <div class="col-md-8 col-md-offset-2">
+                        {{ form_row(edit_form.iskustvo, {label:'Iskustvo','attr': {'class': 'form-control'}}) }}
+                     </div>
+                  </div>                   
+                  <div class="form_group">
+                     <div class="col-md-8 col-md-offset-2">
+                        {{ form_row(edit_form.vjestine, {label:'Vještine','attr': {'class': 'form-control'}}) }}
+                     </div>
+                  </div> 
+                  
+                  <div class="form_group">
+                     <div class="col-md-8 col-md-offset-2">
+                        {{ form_row(edit_form.ostalo, {label:'Ostalo','attr': {'class': 'form-control'}}) }}
+                     </div>
+                  </div> 
+            
+               <div class="form-group">
+                <div class="col-md-8 col-md-offset-4" style="margin-top:5px;">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fa fa-btn fa-user"></i> Uredi profil
+                    </button>
+                </div>
+            	</div>
+               {{ form_end(edit_form) }} 
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}
+

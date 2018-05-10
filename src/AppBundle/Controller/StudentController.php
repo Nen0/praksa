@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-class AddStudentController extends Controller
+class StudentController extends Controller
 {
     /**
      * @Route("/profesor/addstudent", name="addStudent")
@@ -36,14 +36,14 @@ class AddStudentController extends Controller
             return $this->redirectToRoute('listStudent');
         }
 
-        return $this->render('auth/register.html.twig', [
+        return $this->render('auth/addStudent.html.twig', [
             'form' => $form->createView(),
         ]);
     }
     /**
      * @Route("/profesor/ListStudent", name="listStudent")
      */
-    public function indexAction()
+    public function listStudent()
     {
         $em = $this->getDoctrine()->getManager();
 
@@ -57,7 +57,7 @@ class AddStudentController extends Controller
      * @Route("/profesor/{id}/edit", name="editStudent")
      */
 
-    public function editAction(Request $request, User $user)
+    public function editStudent(Request $request, User $user)
     {
         
         $editForm = $this->createForm(UserType::class, $user);
@@ -70,14 +70,13 @@ class AddStudentController extends Controller
         }
 
         return $this->render('editStudent.html.twig', array(
-            'redditPost' => $user,
             'edit_form' => $editForm->createView()            
         ));
     }
     /**
      * @Route("/profesor/{id}/delete", name="deleteStudent")
     */
-    public function deleteAction($id)
+    public function deleteStudent($id)
     {
         
         $em = $this->getDoctrine()->getManager();
