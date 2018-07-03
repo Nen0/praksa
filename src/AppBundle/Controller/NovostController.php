@@ -54,7 +54,7 @@ class NovostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $novosti = $em->getRepository('AppBundle:Novost')->findAll();
+        $novosti = $em->getRepository('AppBundle:Novost')->findBy([], ['id' => 'DESC']);
 
 
         return $this->render('listNovosti.html.twig', array(

@@ -8,6 +8,8 @@ use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use AppBundle\Entity\Studij;
 
 class UserType extends AbstractType
 {
@@ -16,6 +18,10 @@ class UserType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('email', EmailType::class)
+            ->add('smijer', EntityType::class, array(                
+                'class' => Studij::class,    
+                'choice_label' => 'name',   
+            ))
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Password'],

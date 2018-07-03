@@ -21,7 +21,7 @@
             <p></p>
             <a href="mailto:{{user.email}}" target="_top">{{user.email}}</a>
             <h4>Obrazovanje:</h4>
-            <p>{{user.obrazovanje}}</p>
+            <p>{{user.obrazovanje.name|default('/')}}</p>
             <h4>Iskustvo:</h4>
             <p>{{user.iskustvo}}</p>           
             

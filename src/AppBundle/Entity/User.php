@@ -12,7 +12,7 @@ use AppBundle\Entity\Novost;
 /**
  *
  * @ORM\Table(name="user")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
 
 class User implements UserInterface
@@ -46,7 +46,7 @@ class User implements UserInterface
 
      /**
      * 
-     * @ORM\OneToOne(targetEntity="Studij")
+     * @ORM\ManyToOne(targetEntity="Studij")
      * @ORM\JoinColumn(name="smijer", referencedColumnName="id")
      */
     private $smijer;     
@@ -71,9 +71,12 @@ class User implements UserInterface
     /**
      * @ORM\Column(type="string", nullable=true, length=1024)
      */
-    protected $iskustvo;
-    /**
-     * @ORM\Column(type="string",nullable=true, length=1024)
+    protected $iskustvo;     
+     /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="Struka")
+     * @ORM\JoinColumn(name="obrazovanje", referencedColumnName="id", onDelete="CASCADE")
      */
     protected $obrazovanje;
     /**

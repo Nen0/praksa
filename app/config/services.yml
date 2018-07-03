@@ -3,7 +3,16 @@
 parameters:
     #parameter_name: value
 
-services:
+services:    
+    AppBundle\Form\SearchParametersType:
+        arguments: ['@doctrine.orm.entity_manager']
+        tags: [form.type]
+        public: true
+    app.user_repository:
+        class: AppBundle\Repository\UserRepository
+        arguments: ['AppBundle:User']
+        public: true
+        factory: ['@doctrine.orm.entity_manager', getRepository]
     # default configuration for services in *this* file    
     app.form_login_authenticator:
         class: AppBundle\Security\FormLoginAuthenticator
@@ -36,3 +45,4 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+    

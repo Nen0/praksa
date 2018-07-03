@@ -9,7 +9,8 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 use Symfony\Component\HttpFoundation\Response;
-
+use AppBundle\Form\SearchParameters;
+use AppBundle\Form\SearchParametersType;
 
 class ZivotopisController extends Controller
 {
@@ -17,15 +18,25 @@ class ZivotopisController extends Controller
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction()
+    public function indexAction(Request $request)
     {
-        $em = $this->getDoctrine()->getManager();
+        $em = $this->getDoctrine()->getManager();        
+        
+        $form = $this->get('form.factory')->createNamed(null, SearchParametersType::class, new SearchParameters());
 
-        $studenti = $em->getRepository('AppBundle:User')->findBy(['role' => 'ROLE_STUDENT']);
+        $form->handleRequest($request);
 
+        if ($form->isSubmitted()) {
+            $studenti = $this->get('app.user_repository')->findByParameters($form->getData());
+            //$studenti = $em->getRepository('AppBundle:User')->findBy(['role' => 'ROLE_STUDENT']);
+        } else {            
+            $studenti = $em->getRepository('AppBundle:User')->findBy(['role' => 'ROLE_STUDENT']);
+        }        
         return $this->render('zivotopisi.html.twig', array(
+            'form' => $form->createView(),
             'studenti' => $studenti,
         ));
+        
     }
     /**
      * @Route("/student/profil", name="editZivotopis")

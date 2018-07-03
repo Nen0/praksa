@@ -20,7 +20,7 @@ class ProfType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
 
-        //$entityManager = $options['entity_manager'];
+        
 
         $builder
             ->add('name', TextType::class)
@@ -44,13 +44,4 @@ class ProfType extends AbstractType
                 ]);
     }
 
-    private function getSmijer($em)
-    {
-        $studiji = $em->getRepository('AppBundle:Studij')->findAll();
-        $smijerovi = [];
-        foreach ($studiji as $studij) {
-            $smijerovi[$studij->getName()] = $studij->getName();
-        }
-        return $smijerovi;
-    }
 }
