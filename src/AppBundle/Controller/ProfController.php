@@ -17,7 +17,6 @@ class ProfController extends Controller
        
         $user = new User();
 
-
         $em = $this->getDoctrine()->getManager();
         $form = $this->createForm(ProfType::class, $user);
         $form->handleRequest($request);
@@ -26,12 +25,8 @@ class ProfController extends Controller
             
             $encoder = $this->get('security.password_encoder');
             $password = $encoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
-
-            
+            $user->setPassword($password);            
             $user->setRole('ROLE_PROF');
-            
-
            
             $em->persist($user);
             $em->flush();            
@@ -39,12 +34,11 @@ class ProfController extends Controller
             return $this->redirectToRoute('login');
         }
 
-
-
         return $this->render('auth/addProf.html.twig', [
             'form' => $form->createView(),
         ]);
     }
+
     /**
      * @Route("/admin/ListProf", name="listProf")
      */
@@ -61,7 +55,6 @@ class ProfController extends Controller
     /**
      * @Route("/admin/{id}/edit", name="editProf")
      */
-
     public function editAction(Request $request, User $user)
     {
         

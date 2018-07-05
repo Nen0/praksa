@@ -3,12 +3,10 @@ namespace AppBundle\Controller;
 
 use AppBundle\Entity\Novost;
 use AppBundle\Form\NovostType;
-
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
-
 use Symfony\Component\Security\Core\User\UserInterface;
 
 
@@ -47,6 +45,7 @@ class NovostController extends Controller
             'form' => $form->createView(),
         ]);
     }
+    
     /**
      * @Route("/student/novosti", name="listNovosti")
      */
