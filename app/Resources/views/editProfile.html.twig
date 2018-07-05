@@ -28,9 +28,12 @@
                         {{ form_row(edit_form.zip, {label:'Poštanski broj','attr': {'class': 'form-control'}}) }}
                      </div>
                   </div> 
-                  <div class="col-md-offset-2-md-8 col-md-offset-2">
-                     {{ form_row(edit_form.grad, {label:'Grad','attr': {'class': 'form-control'}}) }}
-                  </div>
+                  <div class="form_group">
+                     <div class="col-md-8 col-md-offset-2">
+                        {{ form_row(edit_form.grad, {label:'Grad','attr': {'class': 'form-control'}}) }}
+                     </div>
+                  </div> 
+                 
                   <div class="form_group">
                      <div class="col-md-8 col-md-offset-2">
                         {{ form_row(edit_form.jezici, {label:'Jezici','attr': {'class': 'form-control'}}) }}
