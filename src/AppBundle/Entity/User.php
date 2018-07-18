@@ -47,9 +47,16 @@ class User implements UserInterface
      /**
      * 
      * @ORM\ManyToOne(targetEntity="Studij")
-     * @ORM\JoinColumn(name="smijer", referencedColumnName="id")
+     * @ORM\JoinColumn(name="smijer", referencedColumnName="id", onDelete="CASCADE")
      */
-    private $smijer;     
+    private $smijer;   
+    /**
+     * @var int
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumn(name="mentor", referencedColumnName="id", onDelete="CASCADE")
+     */
+    private $mentor;    
 
     /**
      * @ORM\Column(type="string", length=64)
@@ -354,6 +361,26 @@ class User implements UserInterface
     public function setOstalo($ostalo)
     {
         $this->ostalo = $ostalo;
+
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getMentor()
+    {
+        return $this->mentor;
+    }
+
+    /**
+     * @param mixed $mentor
+     *
+     * @return self
+     */
+    public function setMentor($mentor)
+    {
+        $this->mentor = $mentor;
 
         return $this;
     }

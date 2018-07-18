@@ -26,11 +26,10 @@ class NovostController extends Controller
             
             $em = $this->getDoctrine()->getManager();
 
-            $id =$this->getUser()->getId();
-            
+            $id =$this->getUser()->getId();            
 
             $userId = $em->getRepository('AppBundle:User')->find($id);
-            
+
 
             $novost->setUserId($userId);
            
@@ -53,7 +52,43 @@ class NovostController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $novosti = $em->getRepository('AppBundle:Novost')->findBy([], ['id' => 'DESC']);
+        $mentor= null;
+
+        $id =$this->getUser()->getId();            
+
+        $user = $em->getRepository('AppBundle:User')->find($id);        
+        
+        
+        if ($mentor = $user->getMentor() ) {
+            $mentor = $user->getMentor()->getId(); 
+        }              
+
+        if($mentor)
+        {
+            $query = $em->createQuery(
+            'SELECT u
+            FROM AppBundle:Novost u
+            WHERE u.user_id = :mentor'
+              
+        )
+         ->setParameter('mentor', $mentor);        
+        }
+        else 
+        {
+              $query = $em->createQuery(
+            'SELECT u
+            FROM AppBundle:Novost u
+            WHERE u.user_id = :id'              
+        )->setParameter('id', $id);
+
+        }
+
+        $novosti = $query->getResult();
+
+        
+
+
+        //$novosti = $em->getRepository('AppBundle:Novost')->findBy(['user_id' => $id], ['id' => 'DESC']);
 
 
         return $this->render('listNovosti.html.twig', array(

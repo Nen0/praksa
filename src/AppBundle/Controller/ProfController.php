@@ -31,7 +31,7 @@ class ProfController extends Controller
             $em->persist($user);
             $em->flush();            
 
-            return $this->redirectToRoute('login');
+            return $this->redirectToRoute('listProf');
         }
 
         return $this->render('auth/addProf.html.twig', [

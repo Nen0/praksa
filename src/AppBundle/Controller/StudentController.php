@@ -46,8 +46,18 @@ class StudentController extends Controller
     public function listStudent()
     {
         $em = $this->getDoctrine()->getManager();
+        if($this->getUser()->getRole()=="ROLE_PROF")
+        {
 
-        $studenti = $em->getRepository('AppBundle:User')->findBy(['role' => 'ROLE_STUDENT']);
+            $id =$this->getUser()->getId();
+
+            $studenti = $em->getRepository('AppBundle:User')->findBy(['role' => 'ROLE_STUDENT', 'mentor' => $id ]);
+
+        }
+        else
+        {
+            $studenti = $em->getRepository('AppBundle:User')->findBy(['role' => 'ROLE_STUDENT']);   
+        }        
 
         return $this->render('listStudent.html.twig', array(
             'studenti' => $studenti,

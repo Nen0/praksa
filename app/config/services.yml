@@ -8,6 +8,10 @@ services:
         arguments: ['@doctrine.orm.entity_manager']
         tags: [form.type]
         public: true
+    AppBundle\Form\UserType:
+        arguments: ['@doctrine.orm.entity_manager']
+        tags: [user.type]
+        public: true
     app.user_repository:
         class: AppBundle\Repository\UserRepository
         arguments: ['AppBundle:User']

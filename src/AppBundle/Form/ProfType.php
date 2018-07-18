@@ -10,11 +10,14 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Doctrine\ORM\EntityManagerInterface;
 
 use AppBundle\Entity\Studij;
 
 class ProfType extends AbstractType
+
 {
+    
     
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -29,6 +32,7 @@ class ProfType extends AbstractType
                 'class' => Studij::class,    
                 'choice_label' => 'name',   
             ))
+            
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => ['label' => 'Password'],
@@ -42,6 +46,6 @@ class ProfType extends AbstractType
         $resolver->setDefaults([
                     'data_class' => 'AppBundle\Entity\User',
                 ]);
-    }
+    }    
 
 }

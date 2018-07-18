@@ -60,10 +60,14 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     {% if is_granted("ROLE_ADMIN")%}
+                    <li><a href="/admin/addSmjer">Dodaj Studij</a></li>                    
+                    <li><a href="/admin/ListStudij">Studiji</a></li>
+                    <li><a href="/admin/addObrazovanje">Dodaj obrazovanje</a></li>                    
+                    <li><a href="/admin/obrazovanjelist">Obrazovanja</a></li>
                     <li><a href="/admin/add">Dodaj profesora</a></li>                    
-                    <li><a href="/admin/ListProf">Lista profesora</a></li>
+                    <li><a href="/admin/ListProf">Profesori</a></li>
                     <li><a href="/profesor/addstudent">Dodaj studenta</a></li>
-                    <li><a href="/profesor/ListStudent">Lista studenata</a></li>
+                    <li><a href="/profesor/ListStudent">Studenti</a></li>
                     <li style="margin-top: 15px;">{{app.user.email}}</li>
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">

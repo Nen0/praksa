@@ -10,6 +10,8 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use AppBundle\Entity\Studij;
+use AppBundle\Entity\User;
+use Doctrine\ORM\EntityRepository;
 
 class UserType extends AbstractType
 {
@@ -21,6 +23,16 @@ class UserType extends AbstractType
             ->add('smijer', EntityType::class, array(                
                 'class' => Studij::class,    
                 'choice_label' => 'name',   
+            ))
+            ->add('mentor', EntityType::class, array(                
+                'class' => User::class,    
+                'choice_label' => 'name', 
+                'query_builder' => function (EntityRepository $er) {
+                    return $er->createQueryBuilder('u')                        
+                        ->where('u.role = :role') 
+                        ->setParameter('role', 'ROLE_PROF');
+            },
+  
             ))
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,

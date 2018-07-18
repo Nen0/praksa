@@ -22,10 +22,6 @@ class ProfilType extends AbstractType
         $builder
             ->add('name', TextType::class)
             ->add('email', EmailType::class)
-            ->add('smijer', EntityType::class, array(                
-                'class' => Studij::class,    
-                'choice_label' => 'name',   
-            ))
             ->add('address', TextType::class, array('required' => false))
             ->add('zip', TextType::class, array('required' => false))
             ->add('grad', TextType::class,  array('required' => false))
