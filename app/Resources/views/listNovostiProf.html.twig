@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<div class="container">
+   <div class="row">
+      <div class="col-md-10 col-md-offset-1">
+         <div class="panel panel-success">
+            <div class="panel-heading text-center">Novosti</div>
+            <table class="table">
+               <thead>
+                  <tr>
+                     <th class="hidden">Id</th>
+                     <th>Naslov novosti</th>                     
+                     <th>Actions</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  {% for novost in novosti %}
+                  <tr>
+                     <td class="hidden">{{ novost.id }}</a></td>
+                     <td>{{ novost.name }}</td>
+                     <td>
+                        <ul class="list-inline">
+                           <li class="list-inline-item">                              
+                              <a href="{{ path('editNovost', { 'id': novost.id }) }}">Uredi</a>
+                           </li>
+                           <li class="list-inline-item">                              
+                              <a href="{{ path('deleteNovost', { 'id': novost.id }) }}">Briši</a>
+                           </li>                                                     
+                        </ul>
+                     </td>
+                  </tr>
+                  {% endfor %}
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
+</div>
+
+
+    
+{% endblock %}

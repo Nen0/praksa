@@ -44,6 +44,23 @@ class NovostController extends Controller
             'form' => $form->createView(),
         ]);
     }
+    /**
+     * @Route("/profesor/ListNovosti", name="listNovostprof")
+     */
+    public function listaProfesora()
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $id =$this->getUser()->getId();            
+
+        $userId = $em->getRepository('AppBundle:User')->find($id);
+
+        $novosti = $em->getRepository('AppBundle:Novost')->findBy(['user_id'=>$userId]);
+
+        return $this->render('listNovostiProf.html.twig', array(
+            'novosti' => $novosti,
+        ));
+    }
     
     /**
      * @Route("/student/novosti", name="listNovosti")
@@ -95,5 +112,40 @@ class NovostController extends Controller
             'novosti' => $novosti,
         ));
     }
-   
+    /**
+     * @Route("/profesor/{id}/deletenovost", name="deleteNovost")
+    */
+    public function deleteAction($id)
+    {
+        
+        $em = $this->getDoctrine()->getManager();
+        $entity = $em->getRepository('AppBundle:Novost')->findOneBy(array('id' => $id));
+
+            if ($entity != null){
+                $em->remove($entity);
+                $em->flush();
+            }
+
+        return $this->redirectToRoute('listNovostprof');
+    } 
+   /**
+     * @Route("/profesor/{id}/editnovost", name="editNovost")
+     */
+    public function editAction(Request $request, Novost $novost)
+    {
+        
+        $editForm = $this->createForm(NovostType::class, $novost);
+        $editForm->handleRequest($request);
+
+        if ($editForm->isSubmitted() && $editForm->isValid()) {
+            $this->getDoctrine()->getManager()->flush();
+
+            return $this->redirectToRoute('listNovosti');
+        }
+
+        return $this->render('editNovost.html.twig', array(
+            'edit_form' => $novost,
+            'form' => $editForm->createView()            
+        ));
+    }
 }
