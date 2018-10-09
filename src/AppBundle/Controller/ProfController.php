@@ -62,7 +62,14 @@ class ProfController extends Controller
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+
+            $encoder = $this->get('security.password_encoder');
+            $password = $encoder->encodePassword($user, $user->getPlainPassword());
+            $user->setPassword($password);         
+
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($user);            
+            $manager->flush();
 
             return $this->redirectToRoute('listProf');
         }
